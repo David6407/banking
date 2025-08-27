@@ -1,0 +1,53 @@
+$ py -m venv venv
+--> Crear entorno virtual  venv
+$ source venv/scripts/activate
+--> Activar entorno virtual
+$ pip freeze
+--> Versión de los paquetes
+$pip install -r rquirements.txt
+--> Instalar Paquetes que están en el archivo
+
+---- Paquetes usados ----
+$ pip install django
+$ pip install flask
+$ pip install mysql
+-------------------------
+
+$ python -m pip install --upgrade pip
+--> Actualizar pip
+$ pip freeze > requirements.txt
+--> Crea o reescribe documento con los paquetes
+
+------- Al empezar ------
+1.Crear entorno virtual
+2.Activarlo
+3.Instalar paquetes
+-------------------------
+
+---> Quiz
+-Para crear arquitectura del proyecto no es obligatorio activar el entorno virtual
+-Motores que soporta Django
+-Django usa una arquitectura MVT(
+Model->(Database)
+ View Template)
+-Debug debe ser False cuando se lleve a produccion
+-Psycopg -->Paquete de postgres para python
+--->
+
+$ django-admin startproject banking .
+-->Crear arquitectura de Django
+
+$ python manage.py runserver
+--> Correr server(Interfaz)
+
+$ py manage.py showmigrations
+--> Mostrar migraciones
+
+$ py manage.py migrate
+--> Instalar los paquetes/migraciones
+
+Una vez instalados los paquetes se corre el servidor y buscar la url en urls.py
+
+::::20/08::::
+$ py manage.py createsuperuser
+-->Crear un super usuario
