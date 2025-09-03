@@ -1,53 +1,164 @@
 $ py -m venv venv
---> Crear entorno virtual  venv
+
+**--> Crear entorno virtual  venv**
+
 $ source venv/scripts/activate
---> Activar entorno virtual
+
+**--> Activar entorno virtual**
+
 $ pip freeze
---> Versión de los paquetes
+
+**--> Versión de los paquetes**
+
 $pip install -r rquirements.txt
---> Instalar Paquetes que están en el archivo
+
+**--> Instalar Paquetes que están en el archivo**
+
+
 
 ---- Paquetes usados ----
+
 $ pip install django
+
 $ pip install flask
+
 $ pip install mysql
--------------------------
+
+---
+
+
 
 $ python -m pip install --upgrade pip
---> Actualizar pip
+
+**--> Actualizar pip**
+
 $ pip freeze > requirements.txt
---> Crea o reescribe documento con los paquetes
+
+**--> Crea o reescribe documento con los paquetes**
+
+
 
 ------- Al empezar ------
-1.Crear entorno virtual
-2.Activarlo
-3.Instalar paquetes
--------------------------
 
----> Quiz
+1.Crear entorno virtual
+
+2.Activarlo
+
+3.Instalar paquetes
+
+---
+
+
+
+-----------------> 	Apuntes
+
 -Para crear arquitectura del proyecto no es obligatorio activar el entorno virtual
+
 -Motores que soporta Django
+
 -Django usa una arquitectura MVT(
+
 Model->(Database)
- View Template)
+
+ View 
+
+Template)
+
 -Debug debe ser False cuando se lleve a produccion
+
 -Psycopg -->Paquete de postgres para python
+
+-La primera migracion que se hace siempre será 0001\_initial
+-App = Modulo
+
+
 --->
 
+
+
 $ django-admin startproject banking .
--->Crear arquitectura de Django
+
+**-->Crear arquitectura de Django**
+
+
 
 $ python manage.py runserver
---> Correr server(Interfaz)
+
+**--> Correr server(Interfaz)**
+
+
 
 $ py manage.py showmigrations
---> Mostrar migraciones
+
+**--> Mostrar migraciones**
+
+
 
 $ py manage.py migrate
---> Instalar los paquetes/migraciones
+
+**--> Instalar los paquetes/migraciones**
+
+
 
 Una vez instalados los paquetes se corre el servidor y buscar la url en urls.py
 
+
+
 ::::20/08::::
 $ py manage.py createsuperuser
--->Crear un super usuario
+
+**-->Crear un super usuario**
+
+$ py manage.py showmigrations auth/admin
+**-->Mostrar migraciones especificas**
+
+$ py manage.py startapp authentication
+**-->Crear nueva app o modulo**
+
+------------>
+
+1. Create banking database in PostgreSQL
+2. Connect to banking db with settings file
+   user:postgres
+   port: 5432
+   dbname: banking
+   2.1 Test Connection
+3. Create new models
+
+   * Entity - Relational Model
+
+4. Make migrations
+5. Migrate to database
+
+
+
+
+
+::::::::27/08:::::::::
+
+bin>psql -u postgres
+
+
+
+::::::03/09:::::::::
+py manage.py shell
+
+py manage.py +tartapp APP_NAME
+
+
+-->Shell
+
+User.objects.all() => Select * from users
+
+
+---->Guardar datos con Python Shell(Django):
+1. Ir a shell
+$ py manage.py shell
+2. Llamar a los modelo(s):
+from authentication.models import user,products
+3. Preparar para guardar
+data = User (firstname="Sebastian", lastname="Pai")   
+4. Guardar
+data.save()
+5. Traer los datos
+User.objects.all() --> Siempre el nombre del modelo
