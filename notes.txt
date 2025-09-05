@@ -147,7 +147,7 @@ py manage.py +tartapp APP_NAME
 
 
 -->Shell
-
+exit()
 User.objects.all() => Select * from users
 
 
