@@ -7,28 +7,22 @@ class Country(models.Model):
     abrev = models.CharField(max_length=5) 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    def __str__(self):
-        return self.name
+
     
 
 class Department(models.Model):
     name = models.CharField(max_length=20)
     abrev = models.CharField(max_length=5) 
-    id_country = models.ForeignKey(Country, on_delete=models.CASCADE, related_name="departments")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     deleted_at =models.DateTimeField(null=True, blank = True)
-    def __str__(self):
-        return self.name
+
 
 class City(models.Model):
     name = models.CharField(max_length=255)
     abrev = models.CharField(max_length=20)
-    id_department = models.ForeignKey(Department, on_delete=models.CASCADE, related_name="cities")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    def __str__(self):
-        return self.name
 
 class User(models.Model):
     firstname = models.CharField(max_length=20)
@@ -37,11 +31,23 @@ class User(models.Model):
     address = models.CharField(max_length=20, blank=True)
     email = models.CharField(max_length=20)
     password = models.TextField()
-    id_city = models.ForeignKey(City, on_delete=models.CASCADE, related_name="users")
     status = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     deleted_at =models.DateTimeField(null=True, blank = True)
     
-    def __str__(self):
-        return f"{self.firstname} {self.lastname}"
+User.add_to_class(
+    'city',
+    models.ForeignKey("City", on_delete=models.CASCADE, related_name="users", null=True, blank=True)
+)
+
+City.add_to_class(
+    'department',
+    models.ForeignKey("Department", on_delete=models.CASCADE, related_name="cities", null=True, blank=True)
+)
+
+Department.add_to_class(
+    'country',
+    models.ForeignKey("Country", on_delete=models.CASCADE, related_name="departments", null=True, blank=True)
+)
+
