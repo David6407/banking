@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
                 ('firstname', models.CharField(max_length=20)),
                 ('lastname', models.CharField(blank=True, max_length=20)),
                 ('mobilephone', models.CharField(max_length=20)),
-                ('address', models.CharField(blank=True, max_length=20)),
+                ('address', models.CharField(blank=True, max_length=50)),
                 ('email', models.CharField(max_length=20)),
                 ('password', models.TextField()),
                 ('status', models.BooleanField(default=True)),
