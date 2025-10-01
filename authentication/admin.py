@@ -5,3 +5,4 @@ admin.site.register(Country)
 admin.site.register(Department)
 admin.site.register(City)
 admin.site.register(User)
+
