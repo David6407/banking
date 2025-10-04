@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Listado de Países{% endblock %}
+{% block content %}
+<h1>Países</h1>
+<table class="table table-striped">
+<thead>
+<tr>
+<th>ID</th>
+<th>Nombre</th>
+<th>Abrev.</th>
+<th>Activo</th>
+<th>Acciones</th>
+</tr>
+</thead>
+<tbody>
+{% for c in countries %}
+<tr>
+<td>{{ c.id }}</td>
+<td>{{ c.name }}</td>
+<td>{{ c.abbrev }}</td>
+<td>{% if c.status %}Sí{% else %}No{% endif %}</td>
+<td>
+<a class="btn btn-sm btn-primary" href="{% url 'banking_app:country_edit' c.id %}">Editar</a>
+</td>
+</tr>
+{% empty %}
+<tr><td colspan="5">No hay países registrados.</td></tr>
+{% endfor %}
+</tbody>
+</table>
+{% endblock %}
+c) ‘authentication_app/templates/banking_app/country_form.html’:
+{% extends "base.html" %}
+{% block title %}Editar País{% endblock %}
+{% block content %}
+<h1>Editar País: {{ country.name }}</h1>
+<form method="post" novalidate>
+{% csrf_token %}
+<div class="mb-3">
+{{ form.name.label_tag }}{{ form.name }}
+{% if form.name.errors %}<div class="text-danger">{{ form.name.errors }}</div>{% endif %}
+</div>
+<div class="mb-3">
+{{ form.abbrev.label_tag }}{{ form.abbrev }}
+{% if form.abbrev.errors %}<div class="text-danger">{{ form.abbrev.errors }}</div>{% endif %}
+</div>
+<div class="form-check mb-3">
+{{ form.status }} {{ form.status.label_tag }}
+</div>
+<button class="btn btn-success" type="submit">Guardar</button>
+<a class="btn btn-secondary" href="{% url 'banking_app:country_list' %}">Volver</a>
+</form>
+{% endblock %}

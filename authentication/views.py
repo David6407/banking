@@ -7,3 +7,12 @@ def index(request):
 
 def countries(request):
     return HttpResponse("Countries view")
+
+def cities(request):
+    return HttpResponse("Cities view")
+
+def departments(request):
+    return HttpResponse("Departments view")
+
+def users(request):
+    return HttpResponse("Users view")
