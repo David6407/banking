@@ -1,18 +1,22 @@
-from django.shortcuts import render
-from django.http import HttpResponse
-# Create your views here.
+from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib import messages
+from .models import Country
+from .forms import CountryForm
 
-def index(request):
-    return HttpResponse("This is my first view!!!")
 
-def countries(request):
-    return HttpResponse("Countries view")
+def country_list(request):
+    countries = Country.objects.all().order_by('name')
+    return render(request, 'banking_app/country_list.html', {'countries': countries})
 
-def cities(request):
-    return HttpResponse("Cities view")
+def country_edit(request, pk):
+    country = get_object_or_404(Country, pk=pk)
+    if request.method == 'POST':
+        form = CountryForm(request.POST, instance=country)
+    if form.is_valid():
+        form.save()
+        messages.success(request, 'País actualizado correctamente.')
+    return redirect('country_list')
 
-def departments(request):
-    return HttpResponse("Departments view")
-
-def users(request):
-    return HttpResponse("Users view")
+else:
+    form = CountryForm(instance=country)
+    return render(request, 'banking_app/country_form.html', {'form': form, 'country': country})

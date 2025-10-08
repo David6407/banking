@@ -1,2 +1,2 @@
-// archivo sencillo para posibles mejoras futuras
-console.log('countries.js cargado');
+body { padding-bottom: 40px; }
+.table td, .table th { vertical-align: middle; }

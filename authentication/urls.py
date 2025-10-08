@@ -1,10 +1,9 @@
-from django.urls import path 
+from django.urls import path
 from . import views
 
-urlpatterns = {
-    path("",views.index, name="index"),
-}
+    app_name = 'banking_app'
 
-urlpatterns = {
-    path("",views.countries,name="countries")
-}
+    urlpatterns = [
+        path('countries/', views.country_list, name='country_list'),
+        path('countries/<int:pk>/edit/', views.country_edit, name='country_edit'),
+]
