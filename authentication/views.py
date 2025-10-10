@@ -12,11 +12,11 @@ def country_edit(request, pk):
     country = get_object_or_404(Country, pk=pk)
     if request.method == 'POST':
         form = CountryForm(request.POST, instance=country)
-    if form.is_valid():
-        form.save()
-        messages.success(request, 'País actualizado correctamente.')
-    return redirect('country_list')
+        if form.is_valid():
+         form.save()
+         messages.success(request, 'País actualizado correctamente.')
+         return redirect('country_list')
 
-else:
-    form = CountryForm(instance=country)
-    return render(request, 'banking_app/country_form.html', {'form': form, 'country': country})
+    else:
+       form = CountryForm(instance=country)
+       return render(request, 'banking_app/country_form.html', {'form': form, 'country': country})
